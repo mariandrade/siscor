@@ -40,6 +40,8 @@ namespace SisCor
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+                app.UseBrowserLink();
             }
             else
             {
@@ -47,7 +49,7 @@ namespace SisCor
             }
 
             app.UseStaticFiles();
-
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
