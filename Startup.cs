@@ -6,9 +6,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace SisCor
 {
+    using Microsoft.AspNetCore.Identity;
+    using Models;
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -21,7 +25,13 @@ namespace SisCor
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<SisCorContext>()
+                .AddDefaultTokenProviders();
+
             services.AddMvc();
+            //var connection = @"Server=.\\;Database=SisCor;Trusted_Connection=True;";
+            services.AddDbContext<SisCorContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
