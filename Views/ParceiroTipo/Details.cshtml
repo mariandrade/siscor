@@ -1,4 +1,4 @@
-@model SisCor.Models.Cliente
+@model SisCor.Models.ParceiroTipo
 
 @{
     ViewData["Title"] = "Details";
@@ -7,14 +7,14 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Cliente</h4>
+    <h4>ParceiroTipo</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.IdPessoaNavigation)
+            @Html.DisplayNameFor(model => model.Descricao)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.IdPessoaNavigation.Id)
+            @Html.DisplayFor(model => model.Descricao)
         </dd>
     </dl>
 </div>

@@ -9,90 +9,85 @@ using SisCor.Models;
 
 namespace SisCor.Controllers
 {
-    public class ClientesController : Controller
+    public class ParceiroTipoController : Controller
     {
         private readonly SisCorContext _context;
 
-        public ClientesController(SisCorContext context)
+        public ParceiroTipoController(SisCorContext context)
         {
             _context = context;
         }
 
-        // GET: Clientes
+        // GET: ParceiroTipo
         public async Task<IActionResult> Index()
         {
-            var sisCorContext = _context.Cliente.Include(c => c.IdPessoaNavigation);
-            return View(await sisCorContext.ToListAsync());
+            return View(await _context.ParceiroTipo.ToListAsync());
         }
 
-        // GET: Clientes/Details/5
-        public async Task<IActionResult> Details(string id)
+        // GET: ParceiroTipo/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var cliente = await _context.Cliente
-                .Include(c => c.IdPessoaNavigation)
+            var parceiroTipo = await _context.ParceiroTipo
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (cliente == null)
+            if (parceiroTipo == null)
             {
                 return NotFound();
             }
 
-            return View(cliente);
+            return View(parceiroTipo);
         }
 
-        // GET: Clientes/Create
+        // GET: ParceiroTipo/Create
         public IActionResult Create()
         {
-            ViewData["IdPessoa"] = new SelectList(_context.Pessoa, "Id", "Id");
             return View();
         }
 
-        // POST: Clientes/Create
+        // POST: ParceiroTipo/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdPessoa")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("Id,Descricao")] ParceiroTipo parceiroTipo)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cliente);
+                _context.Add(parceiroTipo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdPessoa"] = new SelectList(_context.Pessoa, "Id", "Id", cliente.IdPessoa);
-            return View(cliente);
+            return View(parceiroTipo);
         }
 
-        // GET: Clientes/Edit/5
-        public async Task<IActionResult> Edit(string id)
+        // GET: ParceiroTipo/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var cliente = await _context.Cliente.FindAsync(id);
-            if (cliente == null)
+            var parceiroTipo = await _context.ParceiroTipo.FindAsync(id);
+            if (parceiroTipo == null)
             {
                 return NotFound();
             }
-            ViewData["IdPessoa"] = new SelectList(_context.Pessoa, "Id", "Id", cliente.IdPessoa);
-            return View(cliente);
+            return View(parceiroTipo);
         }
 
-        // POST: Clientes/Edit/5
+        // POST: ParceiroTipo/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Id,IdPessoa")] Cliente cliente)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Descricao")] ParceiroTipo parceiroTipo)
         {
-            if (id != cliente.Id)
+            if (id != parceiroTipo.Id)
             {
                 return NotFound();
             }
@@ -101,12 +96,12 @@ namespace SisCor.Controllers
             {
                 try
                 {
-                    _context.Update(cliente);
+                    _context.Update(parceiroTipo);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClienteExists(cliente.Id))
+                    if (!ParceiroTipoExists(parceiroTipo.Id))
                     {
                         return NotFound();
                     }
@@ -117,43 +112,41 @@ namespace SisCor.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdPessoa"] = new SelectList(_context.Pessoa, "Id", "Id", cliente.IdPessoa);
-            return View(cliente);
+            return View(parceiroTipo);
         }
 
-        // GET: Clientes/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        // GET: ParceiroTipo/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var cliente = await _context.Cliente
-                .Include(c => c.IdPessoaNavigation)
+            var parceiroTipo = await _context.ParceiroTipo
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (cliente == null)
+            if (parceiroTipo == null)
             {
                 return NotFound();
             }
 
-            return View(cliente);
+            return View(parceiroTipo);
         }
 
-        // POST: Clientes/Delete/5
+        // POST: ParceiroTipo/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cliente = await _context.Cliente.FindAsync(id);
-            _context.Cliente.Remove(cliente);
+            var parceiroTipo = await _context.ParceiroTipo.FindAsync(id);
+            _context.ParceiroTipo.Remove(parceiroTipo);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClienteExists(string id)
+        private bool ParceiroTipoExists(int id)
         {
-            return _context.Cliente.Any(e => e.Id == id);
+            return _context.ParceiroTipo.Any(e => e.Id == id);
         }
     }
 }
