@@ -19,32 +19,64 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-collapse">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">SisCor</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="~/ParceiroTipo/Index" id="navbarDropdown" role="button" data-toggle="dropdown">
+                        Operacional
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Operadoras</a>
+                        <a class="dropdown-item" href="#">Plataformas</a>
+                        <a class="dropdown-item" href="#">Sindicatos/Entidades</a>
+                        <a class="dropdown-item" href="#">Segmento</a>
+                    </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="~/ParceiroTipo/Index" id="navbarDropdown" role="button" data-toggle="dropdown">
-                        Dropdown
+                        Gerenciamento
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Campanhas</a>
+                        <a class="dropdown-item" href="#">Pagamento de Comissões</a>
+                        <a class="dropdown-item" href="#">Recebimento de Comissões</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Produtos</a>
+                        <a class="dropdown-item" href="#">Tabelas</a>
+                        <a class="dropdown-item" href="#">Clientes</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Usuários</a>
+                        <a class="dropdown-item" href="#">Perfil de Acesso</a>
                     </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="~/ParceiroTipo/Index" id="navbarDropdown" role="button" data-toggle="dropdown">
+                        Relatórios
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Vendas</a>
+                        <a class="dropdown-item" href="#">Comissões</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Oferta Ativa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Propostas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Campanhas Ativas</a>
                 </li>
             </ul>
             @*<form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>*@
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>*@
         </div>
     </nav>
     <div class="container body-content">
@@ -60,12 +92,12 @@
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
-<script src='//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js'></script>
-<script>
-  $(function () {
-    $('.dropdown-toggle').dropdown();
-  }); 
-</script>
+        <script src='//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js'></script>
+        <script>
+            $(function () {
+                $('.dropdown-toggle').dropdown();
+            });
+        </script>
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
