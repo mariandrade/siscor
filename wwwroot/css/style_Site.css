@@ -1,0 +1,10 @@
+﻿.personal-navbar {
+    border-color: #111F4A;
+    border-bottom-width: 5px;
+    background-color: #ECECE4;
+}
+
+.personal-navbar-logo {
+    margin-left: 20px;
+    margin-top: 4px;
+}

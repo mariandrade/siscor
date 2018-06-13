@@ -1,0 +1,86 @@
+﻿@model IEnumerable<SisCor.Models.Navbar>
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-static-top personal-navbar" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="/"><img src="~/logo.png" class="pesronal-navbar-logo" /></a>
+    </div>
+
+    <ul class="nav navbar-top-links navbar-right">
+        <li class="dropdown">
+            @if (User != null && User.Identity.IsAuthenticated)
+            {
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i>  @User.Identity.Name <i class="fa fa-caret-down"></i>
+                </a>
+            }
+            <ul class="dropdown-menu dropdown-user">
+                <li>
+                    <a href="/Autenticacao/Logoff"><i class="fa fa-sign-out fa-fw"></i>Sair</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="sidebar-search">
+                    <div class="input-group custom-search-form"></div>
+                </li>
+                @foreach (var item in Model)
+                {
+                    if (!item.Grupos.Split(',').Any(User.IsInRole)) { continue; }
+
+                    if (item.isParent == false && item.parentId == 0)
+                    {
+                        if (!string.IsNullOrWhiteSpace(item.area))
+                        {
+                            <li><a href="@Url.Action(item.action, item.controller, new { area = item.area })"><i class="@item.imageClass"></i> @item.nameOption</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action(item.action, item.controller)"><i class="@item.imageClass"></i> @item.nameOption</a></li>
+                        }
+                    }
+                    else
+                    {
+                        if (item.isParent == true)
+                        {
+                            <li>
+                                <a href="#"><i class="@item.imageClass"></i> @item.nameOption<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    @foreach (var child in Model.Where(p => p.parentId == item.Id))
+                                    {
+                                        if (!child.Grupos.Split(',').Any(User.IsInRole)) { continue; }
+
+                                        if (child.controller == null)
+                                        {
+                                            <li><a href="#">@child.nameOption</a></li>
+                                        }
+                                        else
+                                        {
+                                            if (!string.IsNullOrWhiteSpace(child.area))
+                                            {
+                                                <li><a href="@Url.Action(child.action, child.controller, new { area = child.area })">@child.nameOption</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a href="@Url.Action(child.action, child.controller)">@child.nameOption</a></li>
+                                            }
+                                        }
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    }
+                }
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+</nav>

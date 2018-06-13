@@ -1,0 +1,26 @@
+﻿<script type="text/javascript">
+    $(document).ready(function() {
+        @{
+            if (TempData["mensagem-alerta"] != null)
+            {
+                ViewContext.Writer.Write("toastr['warning']('{0}');", TempData["mensagem-alerta"]);
+
+                TempData["mensagem-alerta"] = null;
+            }
+
+            if (TempData["mensagem-erro"] != null)
+            {
+                var teste = TempData["mensagem-erro"].ToString();
+                ViewContext.Writer.Write("toastr['error']('{0}');", teste);
+
+                TempData["mensagem-erro"] = null;
+            }
+            if (TempData["mensagem-success"] != null)
+            {
+                ViewContext.Writer.Write("toastr['success']('{0}');", TempData["mensagem-success"]);
+
+                TempData["mensagem-success"] = null;
+            }
+        }
+    });
+</script>
