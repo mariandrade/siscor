@@ -6,35 +6,80 @@
     <title>@ViewData["Title"] - SisCor</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css' />
+        <link rel="stylesheet" href="~/lib/bootstrap4/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.1.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap4/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">SisCor</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="ParceiroTipo" asp-action="Index">Parceiro Tipo</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-collapse">
+        <a class="navbar-brand"  asp-area="" asp-controller="Home" asp-action="About">SisCor</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">MEU PAINEL</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="~/ParceiroTipo/Index" id="navbarDropdown" role="button" data-toggle="dropdown">
+                        Operacional
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" asp-area="" asp-controller="Operadora" asp-action="Index">Operadoras</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Plataforma" asp-action="Index">Plataformas</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Sindicato" asp-action="Index">Sindicatos/Entidades</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Segmento" asp-action="Index">Segmentos</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="ProdutoTipo" asp-action="Index">ProdutoTipo</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="~/ParceiroTipo/Index" id="navbarDropdown" role="button" data-toggle="dropdown">
+                        Gerenciamento
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" asp-area="" asp-controller="Campanha" asp-action="Index">Campanhas</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="PagamentoComissao" asp-action="Index">Pagamento de Comissões</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="RecebimentoComissao" asp-action="Index">Recebimento de Comissões</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" asp-area="" asp-controller="Produto" asp-action="Index">Produtos</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Tabela" asp-action="Index">Tabelas</a>
+                        <a class="dropdown-item" asp-area="" asp-controller="Cliente" asp-action="Index">Clientes</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Usuários</a>
+                        <a class="dropdown-item" href="#">Perfil de Acesso</a>
+                    </div>
+                </li>
+                @*<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="~/ParceiroTipo/Index" id="navbarDropdown" role="button" data-toggle="dropdown">
+                        Relatórios
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" asp-area="" asp-controller="Venda" asp-action="Index">Vendas</a>
+                    </div>
+                </li>*@
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Oferta" asp-action="Index">Oferta Ativa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Proposta" asp-action="Index">Propostas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="CampanhaAtiva" asp-action="Index">Campanhas Ativas</a>
+                </li>
+            </ul>
+            @*<form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Pesquise aqui..." aria-label="Search">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Pesquisar</button>
+            </form>*@
         </div>
     </nav>
     <div class="container body-content">
@@ -49,6 +94,13 @@
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+        <script src='//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js'></script>
+        <script>
+            $(function () {
+                $('.dropdown-toggle').dropdown();
+            });
+        </script>
     </environment>
     <environment exclude="Development">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"

@@ -1,0 +1,60 @@
+@model SisCor.Models.Proposta
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Proposta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdParceiro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdParceiro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCotacao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdCotacao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCriacao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataCriacao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CriadoPor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CriadoPor)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataEdicao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataEdicao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EditadoPor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EditadoPor)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IdClienteNavigation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdClienteNavigation.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

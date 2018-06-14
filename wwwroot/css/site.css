@@ -20,7 +20,12 @@
 .carousel-inner .item img[src$=".svg"] {
     width: 100%;
 }
-
+footer {
+    position: fixed;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+}
 /* QR code generator */
 #qrCode {
     margin: 15px;
