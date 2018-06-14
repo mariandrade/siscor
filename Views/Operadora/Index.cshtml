@@ -1,0 +1,39 @@
+@model IEnumerable<SisCor.Models.Parceiro>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Operadoras</h2>
+
+<p>
+    <a asp-action="Create">Cadastrar nova</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Operadora
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdParceiroTipoNavigation.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPessoaNavigation.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Alterar</a> 
+                <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

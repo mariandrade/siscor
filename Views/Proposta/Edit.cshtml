@@ -1,0 +1,61 @@
+@model SisCor.Models.Proposta
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Proposta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="IdCliente" class="control-label"></label>
+                <select asp-for="IdCliente" class="form-control" asp-items="ViewBag.IdCliente"></select>
+                <span asp-validation-for="IdCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdParceiro" class="control-label"></label>
+                <input asp-for="IdParceiro" class="form-control" />
+                <span asp-validation-for="IdParceiro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCotacao" class="control-label"></label>
+                <input asp-for="IdCotacao" class="form-control" />
+                <span asp-validation-for="IdCotacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataCriacao" class="control-label"></label>
+                <input asp-for="DataCriacao" class="form-control" />
+                <span asp-validation-for="DataCriacao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CriadoPor" class="control-label"></label>
+                <input asp-for="CriadoPor" class="form-control" />
+                <span asp-validation-for="CriadoPor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataEdicao" class="control-label"></label>
+                <input asp-for="DataEdicao" class="form-control" />
+                <span asp-validation-for="DataEdicao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EditadoPor" class="control-label"></label>
+                <input asp-for="EditadoPor" class="form-control" />
+                <span asp-validation-for="EditadoPor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
