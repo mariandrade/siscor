@@ -1,0 +1,33 @@
+Scaffold-DbContext "Scaffold-DbContext "DESKTOP-15I3NKL;Database=SisCor;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models\mssqllocaldb;Database=SisCor; Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
+
+dotnet ef dbcontext scaffold "Server=.\;Database=SisCor;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models
+
+dotnet aspnet-codegenerator razorpage -m Pessoa -dc PessoaContext -udl -outDir Pages\Pessoa --referenceScriptLibraries
+
+dotnet ef controller -name ClientesController -m Clientes -dc SisCorContext --relativeFolderPath Controllers --useDefaultLayout
+
+dotnet aspnet-codegenerator controller -name PessoaFisicaController -m PessoFisica -dc SisCorContext --relativeFolderPath Controllers --useDefaultLayout
+
+
+
+
+ERRO DE CONTEXT: CORREÇÃO
+
+O código do controlador gerado parece bem. Você não mencionou o erro exato, mas, estou supondo que você está recebendo o erro porque você não adicionou o MYDBContext em seu contêiner de serviços.
+
+Em seu arquivo startup.cs, você precisa adicionar este MYDBContext no contêiner de serviços para que o seu controlador o insira corretamente. Exemplo,
+
+    services.AddDbContext<MYDBContext>(options =>
+        options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+Depois de fazer isso, se você receber o erro abaixo:
+
+System.ArgumentException: AddDbContext was called with configuration, but the context type 'MyDBContext' only declares a parameterless constructor.
+então significa que o seu scaffolded DbContextnão está configurado corretamente para ser injetado com o parâmetro de opções correto. Atualize o construtor para:
+
+public partial class MYDBContext : DbContext
+{
+    public MYDBContext(DbContextOptions<MYDBContext> options)
+        : base(options)
+    {
+
+    }
